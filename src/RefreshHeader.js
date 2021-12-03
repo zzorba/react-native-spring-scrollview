@@ -20,7 +20,7 @@ export class RefreshHeader extends React.Component<
 
   constructor(props: HeaderPropType) {
     super(props);
-    this.state = { status: "waiting" };
+    this.state = { status: props.initialStatus || "waiting" };
   }
 
   changeToState(newStatus: HeaderStatus) {
@@ -54,6 +54,7 @@ interface HeaderPropType {
   offset?: Animated.Value;
   maxHeight?: number;
   bottomOffset?: number;
+  initialStatus?: HeaderStatus;
 }
 
 interface HeaderStateType {

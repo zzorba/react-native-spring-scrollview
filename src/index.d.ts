@@ -53,9 +53,9 @@ declare module 'react-native-spring-scrollview' {
   export interface RefreshHeaderStateType {
     status: HeaderStatus;
   }
-  export class RefreshHeader extends React.Component<
+  export class RefreshHeader<T extends RefreshHeaderStateType> extends React.Component<
     RefreshHeaderPropType,
-    RefreshHeaderStateType
+    T
   > {}
 
   export class NormalHeader extends RefreshHeader {}

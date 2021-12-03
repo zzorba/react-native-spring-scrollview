@@ -125,6 +125,7 @@ export class SpringScrollView extends React.PureComponent<SpringScrollViewPropTy
             ref={(ref) => (this._refreshHeader = ref)}
             offset={this._nativeOffset.y}
             maxHeight={Refresh.height}
+            initialStatus={this._refreshStatus}
           />
         </Animated.View>
       )
@@ -249,13 +250,14 @@ export class SpringScrollView extends React.PureComponent<SpringScrollViewPropTy
   }
 
   beginRefresh() {
-    if (!this.props.loadingFooter || this.props.loadingFooter.height <= 0)
+    if (!this.props.refreshHeader || this.props.refreshHeader.height <= 0)
       return Promise.reject(
-        "SpringScrollView: call beginRefresh without loadingFooter or loadingFooter height"
+        "SpringScrollView: call beginRefresh without refreshHeader or refreshHeader height"
       );
+    this._toRefreshStatus('refreshing');
     return this.scrollTo({
       x: this._contentOffset.x,
-      y: -this.props.loadingFooter.height - 1,
+      y: -this.props.refreshHeader.height - 1,
     });
   }
 
